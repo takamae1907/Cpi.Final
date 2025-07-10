@@ -1,4 +1,41 @@
 /* Estilos Gerais */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&display=swap');
+.atkinson-hyperlegible-mono-uniquifier {
+    font-family: "Atkinson Hyperlegible Mono", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+  }
+.cinzel-uniquifier {
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+  }
+  
+  
+.permanent-marker-regular {
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .nunito-sans-uniquifier {
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100,
+      "YTLC" 500;
+  }
+  
+
+ /* No seu arquivo style.css */
+
+/* Remova o overflow-x: hidden do body se adicionou para o Anime.js */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f2f5;
@@ -8,16 +45,59 @@ body {
     flex-direction: column;
     min-height: 100vh;
     color: #333;
+    /* Certifique-se de que não há 'overflow-x: hidden' aqui, a menos que seja por outro motivo */
 }
 
+.task-item {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    /* --- ESTILOS PARA ANIMAÇÃO DE ENTRADA E SAÍDA (MODIFICADO) --- */
+    /* Estado inicial para a animação de entrada: totalmente transparente e acima da tela */
+    opacity: 0;
+    transform: translateY(-50px); /* Começa 50px acima da posição final */
+
+    /* Transição suave para quando a classe 'show' for adicionada e 'hide' para remover */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out,
+                height 0.3s ease-out, padding 0.3s ease-out, margin 0.3s ease-out;
+    /* Adicionei 'margin' na transição para um encolhimento mais suave ao remover */
+}
+
+/* Classe que será adicionada pelo JavaScript para mostrar o item animado */
+.task-item.show {
+    opacity: 1;
+    transform: translateY(0); /* Desliza para a posição final (0px) */
+}
+
+/* Classe para animação de saída (quando a tarefa é excluída) */
+.task-item.hide {
+    opacity: 0;
+    transform: translateY(-50px); /* Move para cima ao sair */
+    height: 0; /* Encolhe a altura */
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0; /* Remove margem para não deixar espaço vazio */
+    margin-bottom: 0; /* Remove margem para não deixar espaço vazio */
+    pointer-events: none; /* Impede cliques durante a animação de saída */
+}
+
+/* SEUS OUTROS ESTILOS EXISTENTES ... */
+
 .header {
-    background-color: #F7F7F7; /* Cor primária, tipo 'To Do' */
+    background-color: #F7F7F7;
     color: #99A0AA;
     padding: 20px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "Atkinson Hyperlegible Mono", sans-serif;
 }
-
+/* ... resto dos seus estilos ... */
 .container {
     flex-grow: 1;
     width: 90%;
@@ -36,6 +116,7 @@ body {
 .task-form-section h2 {
     color: #2C4156;
     margin-bottom: 15px;
+    font-family: "Nunito Sans", sans-serif;
     text-align: center;
 }
 
@@ -93,6 +174,7 @@ body {
     color: #2C4156;
     margin-bottom: 15px;
     text-align: center;
+    font-family: "Permanent Marker", cursive;
 }
 
 .filter-group {
@@ -257,3 +339,5 @@ body {
         justify-content: flex-end; /* Alinha botões à direita em telas pequenas */
     }
 }
+
+/* Alinha botões à direita em telas pequenas */
